@@ -67,12 +67,14 @@ app.intent("RobotMovementIntent", {
     ]
   },
   function(request, response) {
-    console.log("Request")
+    console.log("Request");
     console.log(request);
+    console.log("Response");
+    console.log(response);
     response.shouldEndSession(false);
     var direction = request.slot("DIRECTION");
-    console.log("Direction:")
-    console.log(direction)
+    console.log("Direction:");
+    console.log(direction);
     var directionCode = directionToCode(direction);
     var dir = directionsCodes[directionCode][0];
     var message = new gcm.Message({
