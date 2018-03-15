@@ -96,7 +96,7 @@ app.intent("RobotMovementIntent", {
           if(dir === "forward") {
             response.say("Moving robot " + dir);
           } else {
-            response.say("Moving robot to" + dir);
+            response.say("Moving robot to " + dir);
           }
         }
       }
