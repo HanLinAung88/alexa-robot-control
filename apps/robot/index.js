@@ -75,15 +75,16 @@ app.intent("RobotMovementIntent", {
         data: { code: directionCode }
     });
     sender.send(message, { registrationTokens: registrationTokens }, function (err, data) {
-        if (err) {
-          console.error(err);
-          response.say("Sorry, I don't know where to go.");
-        } else {
-          console.log(data);
-          if (request.hasSession()) {
-            response.say("Moving robot" + dir);
+      if (err) {
+        console.error(err);
+        response.say("Sorry, I don't know where to go.");
+      } else {
+        console.log(data);
+        if (request.hasSession()) {
+          response.say("Moving robot" + dir);
         }
-        response.send();
+      }
+      response.send();
     });
     return false;
   }
