@@ -42,7 +42,7 @@ function directionToCode(direction) {
   } else if(direction === "back") {
       return 3;
   } else {
-      return -1;
+      return 4;
   }
 }
 
@@ -93,7 +93,11 @@ app.intent("RobotMovementIntent", {
       } else {
         console.log(data);
         if (request.hasSession()) {
-          response.say("Moving robot" + dir);
+          if(dir === "forward") {
+            response.say("Moving robot " + dir);
+          } else {
+            response.say("Moving robot to" + dir);
+          }
         }
       }
       response.send();
