@@ -67,6 +67,8 @@ app.intent("RobotMovementIntent", {
     ]
   },
   function(request, response) {
+    console.log(request);
+    console.log(response);
     response.shouldEndSession(false);
     var direction = request.slot("DIRECTION");
     var directionCode = directionToCode(direction);
