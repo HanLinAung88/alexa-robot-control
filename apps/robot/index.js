@@ -40,7 +40,6 @@ function directionToCode(direction) {
   } else if(direction === "left") {
       return 7;
   } else if(direction === "back") {
-      console.log("Something wrong here?")
       return 8;
   } else {
       return -1;
@@ -78,21 +77,19 @@ app.intent("RobotMovementIntent", {
     console.log("Direction:");
     console.log(direction);
     var directionCode = directionToCode(direction);
-    console.log(directionCode);
     var dir = directionsCodes[directionCode][0];
     console.log(dir);
     var message = new gcm.Message({
         data: { code: directionCode }
     });
+    console.log("Still here2")
     console.log(message);
     console.log("Still here")
     sender.send(message, { registrationTokens: registrationTokens }, function (err, data) {
       if (err) {
-        console.log("Rip")
         console.error(err);
         response.say("Sorry, I don't know where to go.");
       } else {
-        console.log("Data")
         console.log(data);
         if (request.hasSession()) {
           response.say("Moving robot" + dir);
