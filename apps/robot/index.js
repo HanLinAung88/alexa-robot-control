@@ -67,20 +67,25 @@ app.intent("RobotMovementIntent", {
     ]
   },
   function(request, response) {
+    console.log("Request")
     console.log(request);
-    console.log(response);
     response.shouldEndSession(false);
     var direction = request.slot("DIRECTION");
+    console.log("Direction:")
+    console.log(direction)
     var directionCode = directionToCode(direction);
     var dir = directionsCodes[directionCode][0];
     var message = new gcm.Message({
         data: { code: directionCode }
     });
+    console.log("Still here")
     sender.send(message, { registrationTokens: registrationTokens }, function (err, data) {
       if (err) {
+        console.log("Rip")
         console.error(err);
         response.say("Sorry, I don't know where to go.");
       } else {
+        console.log("Data")
         console.log(data);
         if (request.hasSession()) {
           response.say("Moving robot" + dir);
