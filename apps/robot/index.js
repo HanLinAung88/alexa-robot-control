@@ -31,6 +31,8 @@ var directionsCodes = [front, right, left, back, stop];
 var directions = [].concat.apply([], directionsCodes);
 
 function directionToCode(direction) {
+  console.log("In direction to code" + direction);
+
   if(direction === "forward") {
     return 5;
   } else if(direction === "right") {
@@ -77,9 +79,11 @@ app.intent("RobotMovementIntent", {
     console.log(direction);
     var directionCode = directionToCode(direction);
     var dir = directionsCodes[directionCode][0];
+    console.log(dir);
     var message = new gcm.Message({
         data: { code: directionCode }
     });
+    console.log(message);
     console.log("Still here")
     sender.send(message, { registrationTokens: registrationTokens }, function (err, data) {
       if (err) {
