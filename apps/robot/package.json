@@ -5,7 +5,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "alexa": {
-    "applicationId": null
+    "applicationId": "amzn1.ask.skill.91cb10eb-3256-4f6b-8234-ce1651fb6183"
   },
   "dependencies": {
     "alexa-app": "^2.4.0",

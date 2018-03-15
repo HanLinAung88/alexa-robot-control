@@ -12,11 +12,11 @@ const registrationToken = process.env.REGISTRATION_TOKEN;
 var sender = new gcm.Sender(gcmServerKey);
 var registrationTokens = [registrationToken];
 
-var front = ["forward"]
-var right = ["right"]
-var left = ["left"]
-var back = ["back"]
-var stop = ["stop"]
+var front = ["forward"];
+var right = ["right"];
+var left = ["left"];
+var back = ["back"];
+var stop = ["stop"];
 // var n = ["north", "forward", "up"];
 // var ne = ["north east"];
 // var e = ["east", "right"];
@@ -31,13 +31,13 @@ var directionsCodes = [front, right, left, back, stop];
 var directions = [].concat.apply([], directionsCodes);
 
 function directionToCode(direction) {
-  if(direction === 'forward') {
+  if(direction === "forward") {
     return 5;
-  } else if(direction === 'right') {
+  } else if(direction === "right") {
       return 6;
-  } else if(direction === 'left') {
+  } else if(direction === "left") {
       return 7;
-  } else if(direction === 'back') {
+  } else if(direction === "back") {
       return 8;
   } else {
       return -1;
