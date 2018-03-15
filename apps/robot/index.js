@@ -33,13 +33,13 @@ var directions = [].concat.apply([], directionsCodes);
 function directionToCode(direction) {
   console.log("In direction to code" + direction);
 
-  if(direction === "forward") {
+  if(direction == "forward") {
     return 5;
-  } else if(direction === "right") {
+  } else if(direction == "right") {
       return 6;
-  } else if(direction === "left") {
+  } else if(direction == "left") {
       return 7;
-  } else if(direction === "back") {
+  } else if(direction == "back") {
       return 8;
   } else {
       return -1;
