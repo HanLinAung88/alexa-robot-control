@@ -34,13 +34,13 @@ function directionToCode(direction) {
   console.log("In direction to code" + direction);
 
   if(direction === "forward") {
-    return 5;
+    return 0;
   } else if(direction === "right") {
-      return 6;
+      return 1;
   } else if(direction === "left") {
-      return 7;
+      return 2;
   } else if(direction === "back") {
-      return 8;
+      return 3;
   } else {
       return -1;
   }
@@ -79,7 +79,7 @@ app.intent("RobotMovementIntent", {
     var directionCode = directionToCode(direction);
     console.log(directionsCodes)
     var dir = directionsCodes[directionCode][0];
-    console.log(dir);
+    console.log("Dir:" + dir);
     var message = new gcm.Message({
         data: { code: directionCode }
     });
