@@ -12,34 +12,25 @@ const registrationToken = process.env.REGISTRATION_TOKEN;
 var sender = new gcm.Sender(gcmServerKey);
 var registrationTokens = [registrationToken];
 
-var front = ["forward"];
-var right = ["right"];
-var left = ["left"];
+var front = ["forward", "front"];
 var back = ["back"];
+var left = ["left"];
+var right = ["right"];
 var stop = ["stop"];
-// var n = ["north", "forward", "up"];
-// var ne = ["north east"];
-// var e = ["east", "right"];
-// var se = ["south east"];
-// var s = ["south", "back", "backward", "reverse", "down"];
-// var sw = ["south west"];
-// var w = ["west", "left"];
-// var nw = ["north west"];
 
-// index is a code
-var directionsCodes = [front, right, left, back, stop];
+var directionsCodes = [front, back, left, right, stop];
 var directions = [].concat.apply([], directionsCodes);
 
 function directionToCode(direction) {
   console.log("In direction to code" + direction);
 
-  if(direction === "forward") {
+  if(direction === "forward" || direction === "front") {
     return 0;
-  } else if(direction === "right") {
+  } else if(direction === "back") {
       return 1;
   } else if(direction === "left") {
       return 2;
-  } else if(direction === "back") {
+  } else if(direction === "right") {
       return 3;
   } else {
       return 4;
@@ -68,24 +59,15 @@ app.intent("RobotMovementIntent", {
     ]
   },
   function(request, response) {
-    console.log("Request");
     console.log(request);
-    console.log("Response");
     console.log(response);
     response.shouldEndSession(false);
     var direction = request.slot("DIRECTION");
-    console.log("Direction:");
-    console.log(direction);
     var directionCode = directionToCode(direction);
-    console.log(directionsCodes)
     var dir = directionsCodes[directionCode][0];
-    console.log("Dir:" + dir);
     var message = new gcm.Message({
         data: { code: directionCode }
     });
-    console.log("Still here2")
-    console.log(message);
-    console.log("Still here")
     sender.send(message, { registrationTokens: registrationTokens }, function (err, data) {
       if (err) {
         console.error(err);
@@ -105,15 +87,5 @@ app.intent("RobotMovementIntent", {
     return false;
   }
 );
-
-// app.intent("RobotStopIntent", {
-//     "utterances": [
-//       "{exit|quit|stop|end|bye}",
-//     ]
-//   },
-//   function(request, response) {
-//     response.say("It was a real pleasure talking to you. Have a good day!");
-//   }
-// );
 
 module.exports = app;
